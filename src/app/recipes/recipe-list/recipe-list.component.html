@@ -6,21 +6,14 @@
 <hr />
 <div class="row">
   <div class="col-xs-12">
-    <a href="#" class="list-group-item clearfix" *ngFor="let recipe of recipes">
-      <div class="pull-left">
-        <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-        <p class="list-group-item-text">{{ recipe.description }}</p>
-      </div>
-      <span class="pull-right">
-        <!-- next, learn eps 12, about recipe detail -->
-        <img
-          [src]="recipe.imagePath"
-          alt="{{ recipe.name }}"
-          class="img-responsive"
-          style="max-height: 50px"
-        />
-      </span>
-    </a>
-    <app-recipe-item></app-recipe-item>
+    <!-- Send recipe from an array (data) to Input recipe of recipe item component -->
+
+    <app-recipe-item
+      *ngFor="let recipeEl of recipes"
+      [recipe]="recipeEl"
+      (recipeSelected)="onRecipeSelected(recipeEl)"
+    ></app-recipe-item>
+    <!-- Receive click event from recipe item compartment
+    then Emits once again a event of selected recipe to send to the recipe comparment -->
   </div>
 </div>

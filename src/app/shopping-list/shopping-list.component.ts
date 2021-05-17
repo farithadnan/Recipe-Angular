@@ -15,4 +15,10 @@ export class ShoppingListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // Receive the input data from the shopping-edit
+  // then pass the data to the ingredient array
+  onIngredientAdded(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+  }
 }
