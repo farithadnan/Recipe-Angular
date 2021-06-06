@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -11,15 +12,14 @@ export class RecipeItemComponent implements OnInit {
   // recipe has inherit skeleton property from Recipe model.
   @Input() recipe: Recipe;
 
-  // Event emitter for when user click the link box of recipe item
-  @Output() recipeSelected = new EventEmitter<void>();
 
-  constructor() {}
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {}
 
   // Emit user click and pass to recipe list to handle before passing to recipe compartment
   onSelected() {
-    this.recipeSelected.emit();
+    // This will pass/emit the data that user have input/choose in the template
+    this.recipeService.recipeSelected.emit(this.recipe);
   }
 }

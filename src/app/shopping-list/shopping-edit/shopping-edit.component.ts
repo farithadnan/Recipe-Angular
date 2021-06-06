@@ -3,11 +3,11 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  EventEmitter,
-  Output,
+
 } from '@angular/core';
 
 import { Ingredient } from '../../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list.service';
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
@@ -20,9 +20,8 @@ export class ShoppingEditComponent implements OnInit {
 
   // ingredientAdded = new EventEmitter<{ name: string; amount: number }>(); -> without ingredient model
 
-  // Create event to send the input to the shopping-list compartment
-  @Output() ingredientAdded = new EventEmitter<Ingredient>();
-  constructor() {}
+
+  constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit(): void {}
 
@@ -37,7 +36,6 @@ export class ShoppingEditComponent implements OnInit {
 
     // Refer Ingredient model when adding input and assign to property
     const newIngredient = new Ingredient(ingName, ingAmount);
-
-    this.ingredientAdded.emit(newIngredient);
+    this.shoppingListService.addIngredient(newIngredient);
   }
 }
